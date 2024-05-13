@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class gameManager : MonoBehaviour
@@ -16,7 +17,9 @@ public class gameManager : MonoBehaviour
     //public Image playerHPBar;
 
     public GameObject player;
-    //need code here: public playerController playerScript;
+    public PlayerController playerScript;
+    public Image playerHealthBar;
+    public GameObject playerFlashDamage;
 
     public bool isPaused;
     int enemyCount;
@@ -26,7 +29,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        //need code here: playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
