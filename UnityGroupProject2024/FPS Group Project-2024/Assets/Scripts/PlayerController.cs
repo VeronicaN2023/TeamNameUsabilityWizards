@@ -21,11 +21,13 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVel;
     int jumpCount;
     bool isShooting;
+    int origHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        origHealth = health;
+        updatePlayerUI();
     }
 
     // Update is called once per frame
@@ -94,5 +96,17 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void updatePlayerUI()
+    {
+        gameManager.instance.playerHealthBar.fillAmount = (float)health / origHealth;
+    }
+
+    IEnumerator flashDamage()
+    {
+        gameManager.instance.playerFlashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerFlashDamage.SetActive(false);
     }
 }
